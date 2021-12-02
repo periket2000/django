@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from pdfs.views import HelloWorld, HelloWorld2
+from pdfs.api.views import PostApiView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HelloWorld.as_view()),
-    path('hello/', HelloWorld2.as_view())
+    path('hello/', HelloWorld2.as_view()),
+    path('api/pdfs/', PostApiView.as_view())
 ]
