@@ -1,0 +1,7 @@
+# using httpie
+# cat requests.txt | grep <request># | cut -d'#' -f3 | xargs http
+
+<request>#<description>#<httpie request data>
+
+R1#get all pdfs#http GET http://localhost:8000/api/pdfs/
+R2#post new pdf#http --raw '{"title": "httpie created", "description": "other pdf", "pages": 10}' POST http://localhost:8000/api/pdfs/ 
