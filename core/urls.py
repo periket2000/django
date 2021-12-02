@@ -14,13 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path, include
 from pdfs.views import HelloWorld, HelloWorld2
-from pdfs.api.views import PostApiView
+from pdfs.api.router import pdf_router
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HelloWorld.as_view()),
     path('hello/', HelloWorld2.as_view()),
-    path('api/pdfs/', PostApiView.as_view())
+    path('api/', include(pdf_router.urls))
 ]
