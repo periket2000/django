@@ -11,6 +11,10 @@ class PdfApiViewSet(ViewSet):
         serializer = GetPdfSerializer(Pdf.objects.all(), many=True)
         return Response(status=status.HTTP_200_OK, data=serializer.data)
 
+    def retrieve(self, request, pk):
+        pdf = GetPdfSerializer(Pdf.objects.get(pk=pk))
+        return Response(status=status.HTTP_200_OK, data=pdf.data)
+
     def create(self, request):
         serializer = PostPdfSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)

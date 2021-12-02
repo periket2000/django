@@ -13,6 +13,13 @@ if [ "x$1" == "x-pr" ]; then
     exit 0
 fi
 
+if [ "x$1" == "x-g" ]; then
+    VAL=$2
+    REQ=$(echo http GET http://localhost:8000/api/pdfs/$VAL/)
+    sh -c $REQ
+    exit 0
+fi
+
 if [ "x$1" == "x-l" ]; then
     cat requests.txt | grep -P '^R\d+' | cut -d'#' -f2
 else
