@@ -1,3 +1,7 @@
 from django.contrib import admin
+from pdfs.models import Pdf
 
-# Register your models here.
+
+@admin.register(Pdf)
+class PdfAdmin(admin.ModelAdmin):
+    list_display = ['title', 'created_at']
