@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Django</title>
+</head>
+<body>
+    <h1>Hola mundo cruel</h1>
+    <p>{{name}}, age: {{years}}</p>
+    <p>Mis lenguajes:</p>
+    <ul>
+        {% for code in codes %}
+        <li>{{code}}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
