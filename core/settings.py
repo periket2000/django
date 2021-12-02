@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     # install pdfs app in the project
-    'pdfs'
+    'pdfs',
+    # install django-rest-framework -> pip install djangorestframework
+    'rest_framework'
 ]
 
 MIDDLEWARE = [
