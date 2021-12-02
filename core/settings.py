@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # install pdfs app in the project
+    'pdfs'
 ]
 
 MIDDLEWARE = [
