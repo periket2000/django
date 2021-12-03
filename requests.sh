@@ -3,6 +3,12 @@
 
 IFS='|'
 
+if [ "x$1" == "x-pdf" ]; then
+    REQ=$(echo http --raw \'{\"mesas\": [1, 22, 23]}\' POST http://localhost:8000/api/pdfsbin/ -o /tmp/shit.pdf)
+    sh -c $REQ
+    exit 0
+fi
+
 if [ "x$1" == "x-pr" ]; then
     DATA=$(curl -s https://random-data-api.com/api/restaurant/random_restaurant)
     TITLE=$(echo $DATA | jq '.name')

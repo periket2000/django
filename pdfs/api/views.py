@@ -7,6 +7,7 @@ from rest_framework.viewsets import ViewSet
 from pdfs.services.qr import Qr
 from pdfs.services.pdf import Pdf as Pdfgen
 from django.http import FileResponse
+import uuid
 
 
 class PdfApiViewSet(ViewSet):
@@ -28,9 +29,21 @@ class PdfApiViewSet(ViewSet):
 
 class PdfApiViewSet2(ViewSet):
     def list(self, request):
+        file_name = str(uuid.uuid4())
         pdf_file = Pdfgen().generate_pdf(url="https://www.google.es", mesas=[1, 2, 3])
-        pdf_file.output('/tmp/shit.pdf', 'F')
-        return FileResponse(open('/tmp/shit.pdf', 'rb'), as_attachment=True, content_type='application/pdf')
+        pdf_file.output("/tmp/{}.pdf".format(file_name), 'F')
+        return FileResponse(open("/tmp/{}.pdf".format(file_name), 'rb'),
+                            as_attachment=True,
+                            content_type='application/pdf')
+
+    def create(self, request):
+        file_name = str(uuid.uuid4())
+        mesas = request.data.get('mesas', [])
+        pdf_file = Pdfgen().generate_pdf(url="https://www.google.es", mesas=mesas)
+        pdf_file.output("/tmp/{}.pdf".format(file_name), 'F')
+        return FileResponse(open("/tmp/{}.pdf".format(file_name), 'rb'),
+                            as_attachment=True,
+                            content_type='application/pdf')
 
 # Before with APIViews, also impact on urls.py and router.py
 # class PostApiView(APIView):
