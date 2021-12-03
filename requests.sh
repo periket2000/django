@@ -4,7 +4,12 @@
 IFS='|'
 
 if [ "x$1" == "x-pdf" ]; then
-    REQ=$(echo http --raw \'{\"mesas\": [1, 22, 23]}\' POST http://localhost:8000/api/pdfsbin/ -o /tmp/shit.pdf)
+    if [ "x$2" == "x" ]; then
+        TBL="1, 22, 23"
+    else
+        TBL=$2
+    fi
+    REQ=$(echo http --raw \'{\"mesas\": [$TBL]}\' POST http://localhost:8000/api/pdfsbin/ -o /tmp/shit.pdf)
     sh -c $REQ
     exit 0
 fi
