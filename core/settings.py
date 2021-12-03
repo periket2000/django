@@ -139,7 +139,7 @@ LOGGING = {
             'style': '{',
         },
         'simple': {
-            'format': '{levelname} {message}',
+            'format': '{name} {levelname} {asctime} {message}',
             'style': '{',
         },
     },
@@ -147,7 +147,7 @@ LOGGING = {
         'file': {
             'class': 'logging.FileHandler',
             'filename': '/tmp/pdfcreator.log',
-            'formatter': 'verbose',
+            'formatter': 'simple',
             'level': 'DEBUG'
         },
     },

@@ -10,11 +10,11 @@ class Pdf(FPDF):
     logger = logging.getLogger(__name__)
 
     def generate_pdf(self, url=None, mesas=[1, 2, 3]):
+        self.logger.info("Generating pdf for tables {}".format(mesas))
         pdf = Pdf(orientation='P', unit='mm', format='A4')
         for mesa in mesas:
             pdf.add_page()
             qr_url = "{}?q=mesa{}".format(url, mesa)
-            self.logger.info(qr_url)
             image_path = Qr.generate_qr(qr_url, identifier=str(uuid.uuid4()))
             pdf.image(image_path, 10, 10, 45, 45)
             pdf.set_draw_color(200, 200, 200)
